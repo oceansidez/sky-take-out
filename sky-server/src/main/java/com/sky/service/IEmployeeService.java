@@ -6,7 +6,7 @@ import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
 import com.sky.result.PageResult;
 
-public interface EmployeeService {
+public interface IEmployeeService {
 
     /**
      * 员工登录
