@@ -30,6 +30,7 @@ logging:
         controller: info
 
 sky:
+  hostAddress: ${sky.hostAddress}
   jwt:
     # 设置jwt签名加密时使用的秘钥
     admin-secret-key: itcast
@@ -37,3 +38,12 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+  upload:
+    isLocal: ${sky.upload.isLocal}
+    path: ${sky.upload.path}
+#    alioss:
+#      endpoint: ${sky.upload.alioss.endpoint}
+#      access-key-id: ${sky.upload.alioss.access-key-id}
+#      access-key-secret: ${sky.upload.alioss.access-key-secret}
+#      bucket-name: ${sky.upload.alioss.bucket-name}
+
