@@ -30,6 +30,7 @@ logging:
         controller: info
 
 sky:
+  # 主机地址，图片回显连接会用到
   hostAddress: ${sky.hostAddress}
   jwt:
     # 设置jwt签名加密时使用的秘钥
@@ -39,6 +40,7 @@ sky:
     # 设置前端传递过来的令牌名称
     admin-token-name: token
   upload:
+    # 是否使用本地上传
     isLocal: ${sky.upload.isLocal}
     path: ${sky.upload.path}
 #    alioss:
