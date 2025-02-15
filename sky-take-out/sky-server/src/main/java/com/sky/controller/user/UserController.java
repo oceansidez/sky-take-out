@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping("/login")
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO dto) {
         log.info("微信登录：dto={}", dto);
-        // 1.调用service的登录方法，获取
+        // 1.调用service的登录方法 生成获得到用户
         User user = userService.wxLogin(dto);
         // 2.如果登录成功，生成令牌jwt
         HashMap<String, Object> claims = new HashMap<>();
