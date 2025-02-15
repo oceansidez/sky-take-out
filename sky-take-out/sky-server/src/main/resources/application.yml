@@ -12,6 +12,11 @@ spring:
       url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${sky.datasource.username}
       password: ${sky.datasource.password}
+      # redis 配置
+  redis:
+    host: ${sky.redis.host}
+    port: ${sky.redis.port}
+    password: ${sky.redis.password}
 
 mybatis:
   #mapper配置文件
@@ -34,18 +39,38 @@ sky:
   hostAddress: ${sky.hostAddress}
   jwt:
     # 设置jwt签名加密时使用的秘钥
-    admin-secret-key: itcast
+    admin-secret-key: adminsecret
     # 设置jwt过期时间
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+    # 用户端jwt配置
+    # 设置jwt签名加密时使用的秘钥
+    user-secret-key: usersecret
+    # 设置jwt过期时间
+    user-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    user-token-name: authentication
   upload:
-    # 是否使用本地上传
+    # 是否使用本地上传，是时需要配置 path，否则需要配置 alioss
     isLocal: ${sky.upload.isLocal}
     path: ${sky.upload.path}
-#    alioss:
-#      endpoint: ${sky.upload.alioss.endpoint}
-#      access-key-id: ${sky.upload.alioss.access-key-id}
-#      access-key-secret: ${sky.upload.alioss.access-key-secret}
-#      bucket-name: ${sky.upload.alioss.bucket-name}
+  #    alioss:
+  #      endpoint: ${sky.upload.alioss.endpoint}
+  #      access-key-id: ${sky.upload.alioss.access-key-id}
+  #      access-key-secret: ${sky.upload.alioss.access-key-secret}
+  #      bucket-name: ${sky.upload.alioss.bucket-name}
+
+  #微信小程序配置
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
+    # 微信支付相关配置---备注：下面的信息用不了。。。
+    mchid: ${sky.wechat.mchid}
+    mchSerialNo: ${sky.wechat.mchSerialNo}
+    privateKeyFilePath: ${sky.wechat.privateKeyFilePath}
+    apiV3Key: ${sky.wechat.apiV3Key}
+    weChatPayCertFilePath: ${sky.wechat.weChatPayCertFilePath}
+    notifyUrl: ${sky.wechat.notifyUrl}
+    refundNotifyUrl: ${sky.wechat.refundNotifyUrl}
 

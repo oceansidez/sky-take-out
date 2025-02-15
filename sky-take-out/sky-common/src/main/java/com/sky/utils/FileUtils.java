@@ -2,6 +2,7 @@ package com.sky.utils;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -43,6 +44,9 @@ public class FileUtils {
         String fileName = UUID.randomUUID() + suffix;
         // 启用了本地上传
         if (isLocal) {
+            if (StringUtils.isEmpty(path)){
+                throw new RuntimeException("使用了本地上传需要指定目录 sky.upload.path");
+            }
             // 文件见不存在创建文件夹
             File fold = new File(path);
             if (!fold.exists()) {
@@ -55,6 +59,9 @@ public class FileUtils {
             // 静态资源地址
             res = "http://" + hostAddress + ":" + port + File.separator + RESOURCE_PATH + File.separator + fileName;
         } else {
+            if (StringUtils.isEmpty(aliOssUtil.getAccessKeyId())){
+                throw new RuntimeException("使用oss需要指定oss的配置");
+            }
             res = aliOssUtil.upload(file.getBytes(), fileName);
         }
         log.info("图片地址:{}", res);

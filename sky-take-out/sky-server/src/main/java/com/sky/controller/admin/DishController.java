@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import com.sky.constant.StatusConstant;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
@@ -96,13 +97,14 @@ public class DishController {
 
     /**
      * 菜品起售、停售
+     *
      * @param status 菜品状态：1为起售，0为停售
      * @param id
      * @return
      */
     @ApiOperation("菜品启售停售")
     @PostMapping("/status/{status}")
-    public Result<String> startOrStop(@PathVariable Integer status, Long id){
+    public Result<String> startOrStop(@PathVariable Integer status, Long id) {
         log.info("菜品起售、停售: status={}, id={}", status, id);
         dishService.startOrStop(status, id);
         return Result.success();
@@ -110,9 +112,10 @@ public class DishController {
 
     @ApiOperation("根据分类id查询菜品")
     @GetMapping("/list")
-    public Result<List<Dish>> list(Long categoryId, String name){
-        log.info("根据分类id查询菜品: categoryId={}, name={}",categoryId, name);
-        List<Dish> dishes = dishService.getByCategoryId(categoryId, name);
+    public Result<List<Dish>> list(Long categoryId, String name) {
+        log.info("根据分类id查询菜品: categoryId={}, name={}", categoryId, name);
+        // 设置状态为上架
+        List<Dish> dishes = dishService.getByCategoryId(categoryId, name, StatusConstant.ENABLE);
         return Result.success(dishes);
     }
 }

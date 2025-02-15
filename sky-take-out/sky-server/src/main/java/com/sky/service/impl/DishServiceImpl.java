@@ -17,11 +17,13 @@ import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
 import com.sky.service.IDishService;
 import com.sky.vo.DishVO;
+import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -140,7 +142,26 @@ public class DishServiceImpl implements IDishService {
     }
 
     @Override
-    public List<Dish> getByCategoryId(Long categoryId, String name) {
-        return dishMapper.getByCategoryId(categoryId, name);
+    public List<Dish> getByCategoryId(Long categoryId, String name, Integer status) {
+        return dishMapper.getByCategoryId(categoryId, name, status);
+    }
+
+    /**
+     * 条件查询菜品和口味
+     *
+     * @param dish
+     * @return
+     */
+    @Override
+    public List<DishVO> listWithFlavor(Dish dish) {
+        List<Dish> dishList = dishMapper.getByCategoryId(dish.getCategoryId(), null, dish.getStatus());
+        ArrayList<DishVO> dishVOS = new ArrayList<>();
+        for (Dish d : dishList) {
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(d, dishVO);
+            dishVO.setFlavors(dishFlavorMapper.selectByDishId(d.getId()));
+            dishVOS.add(dishVO);
+        }
+        return dishVOS;
     }
 }

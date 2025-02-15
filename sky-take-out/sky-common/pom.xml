@@ -44,6 +44,10 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
         <!--微信支付-->
         <dependency>
             <groupId>com.github.wechatpay-apiv3</groupId>

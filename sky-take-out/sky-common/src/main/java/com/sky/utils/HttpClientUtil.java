@@ -75,7 +75,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * 发送POST方式请求
+     * 发送POST方式请求 表单
      *
      * @param url
      * @param paramMap
@@ -123,7 +123,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * 发送POST方式请求
+     * 发送POST方式请求 请求体
      *
      * @param url
      * @param paramMap
