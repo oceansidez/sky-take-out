@@ -74,3 +74,10 @@ sky:
     notifyUrl: ${sky.wechat.notifyUrl}
     refundNotifyUrl: ${sky.wechat.refundNotifyUrl}
 
+  shop:
+    #商铺地址
+    address: ${sky.shop.address}
+    #百度地图AK
+    ak: ${sky.shop.ak}
+    #配送距离极限--单位：米
+    distance: ${sky.shop.distance}

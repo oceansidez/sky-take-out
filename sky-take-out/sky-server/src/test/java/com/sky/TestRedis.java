@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 //如果用了webSocket，测试环境需要声明webEnvironment，否则报错
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestRedis {
     @Autowired
     private RedisTemplate redisTemplate;
